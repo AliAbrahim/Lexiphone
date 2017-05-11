@@ -14,6 +14,7 @@ namespace Lexiphone.Models
         [Display(Name = "Current Price")]
         public decimal CurrentPrice { get; set; }
         public int Stock { get; set; }
+        [Display(Name="Photo")]
         public string ProductUrl { get; set; }
 
 
