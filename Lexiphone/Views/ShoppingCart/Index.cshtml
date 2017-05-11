@@ -2,8 +2,7 @@
 @{
     ViewBag.Title = "Shopping Cart";
 }
-<script src="/Scripts/jquery-1.4.4.min.js"
-        type="text/javascript"></script>
+<script src="/Scripts/jquery-1.4.4.min.js"type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
         // Document.ready -> link up remove event handler
@@ -29,6 +28,14 @@
         });
     });
 </script>
+
+
+
+
+
+
+
+
 <h3>
     <em>Review</em> your cart:
 </h3>
@@ -63,11 +70,11 @@
                 @item.Count
             </td>
             <td>
-                <a href="#" class="RemoveLink"
-                   data-id="@item.RecordId">
+                <a href="#" class="RemoveLink" data-id="@item.RecordId">
                     Remove
                     from cart
                 </a>
+               
             </td>
         </tr>
     }

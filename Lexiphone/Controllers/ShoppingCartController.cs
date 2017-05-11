@@ -43,6 +43,10 @@ namespace Lexiphone.Controllers
             // Go back to the main store page for more shopping
             return RedirectToAction("Index");
         }
+
+
+
+
         //
         // AJAX: /ShoppingCart/RemoveFromCart/5
         [HttpPost]
@@ -51,9 +55,8 @@ namespace Lexiphone.Controllers
             // Remove the item from the cart
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
-            // Get the name of the album to display confirmation
-            string albumName = storeDB.Carts
-                .Single(item => item.RecordId == id).Product.Name;
+            // Get the name of the Product to display confirmation
+            string prodName = storeDB.Carts.Single(item => item.RecordId == id).Product.Name;
 
             // Remove from cart
             int itemCount = cart.RemoveFromCart(id);
@@ -61,8 +64,7 @@ namespace Lexiphone.Controllers
             // Display the confirmation message
             var results = new ShoppingCartRemoveViewModel
             {
-                Message = Server.HtmlEncode(albumName) +
-                    " has been removed from your shopping cart.",
+                Message = Server.HtmlEncode(prodName) +" has been removed from your shopping cart.",
                 CartTotal = cart.GetTotal(),
                 CartCount = cart.GetCount(),
                 ItemCount = itemCount,
@@ -71,6 +73,40 @@ namespace Lexiphone.Controllers
             return Json(results);
         }
         //
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Product product = db.Products.Find(id);
+        //    if (product == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(product);
+        //}
+
+        //// POST: Products/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Product product = db.Products.Find(id);
+        //    db.Products.Remove(product);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+
+
+
+
+
+
+
+
+
         // GET: /ShoppingCart/CartSummary
         [ChildActionOnly]
         public ActionResult CartSummary()

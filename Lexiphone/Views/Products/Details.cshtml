@@ -75,5 +75,14 @@
 
     @*@Html.ActionLink("Add To Cart", "AddToCart","ShoppingCart")*@
 <p class="button">
-    @Html.ActionLink("Add to cart", "AddToCart","ShoppingCart", new { id = Model.ProductId },"")| @Html.ActionLink("Back to List", "Index")|@Html.ActionLink("BUY","Index", "ShoppingCart")</p>
+    <div class="btn btn-default" style="width:100px">  @Html.ActionLink("Add to cart", "AddToCart","ShoppingCart", new { id = Model.ProductId },"")</div>
+    <div class="btn btn-default" style="width:100px">  @Html.ActionLink("Back to List", "Index")</div>
+    <div class="btn btn-default" style="width:100px">  @Html.ActionLink("BUY", "Index", "ShoppingCart")</div>
+
+
+
+    @*@Html.ActionLink("Add to cart", "AddToCart","ShoppingCart", new { id = Model.ProductId },"")|
+     @Html.ActionLink("Back to List", "Index")|
+    @Html.ActionLink("BUY","Index", "ShoppingCart")</p>*@
 </p>
+

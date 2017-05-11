@@ -52,11 +52,12 @@ namespace Lexiphone.Models
             // Save changes
             WebDB.SaveChanges();
         }
+        
         public int RemoveFromCart(int id)
         {
             // Get the cart
             var cartItem = WebDB.Carts.Single(
-                cart => cart.CartId == ShoppingCartId
+                cart => (cart.CartId == ShoppingCartId)
                 && cart.RecordId == id);
 
             int itemCount = 0;
