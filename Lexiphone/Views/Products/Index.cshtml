@@ -9,8 +9,11 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-striped" >
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Brand.Name)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -23,14 +26,18 @@
         <th>
             @Html.DisplayNameFor(model => model.Stock)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category)
-        </th>
+       
+        @*<th>
+            @Html.DisplayNameFor(model => model.CatId)
+        </th>*@
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Brand.Name)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
@@ -44,14 +51,31 @@
             @Html.DisplayFor(modelItem => item.Stock)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Category)
+            <img src="@Html.DisplayFor(modelItem => item.ProductUrl)"/>
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CatId)
+        </td>*@
+        <td style="color:yellow">
+            <div class="btn btn-danger" style="width:80px; "> @Html.ActionLink("Edit", "Edit", new { id = item.ProductId })</div> 
+            <div class="btn btn-danger"style="width:80px">@Html.ActionLink("Details", "Details", new { id = item.ProductId })</div> 
+            <div class="btn btn-danger"style="width:80px">  @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })</div>
+           
+</td>
     </tr>
 }
 
 </table>
+@*<div class="btn btn-danger">
+    @Html.ActionLink(">>", "AddressAndPayment", "Checkout") Finish Shopping
+</div>*@
+
+
+@*<p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>*@
+
+
+@*on klick
+<button onclick="myFunction()">Click me</button>*@
+
+
+@*<input type="button" value="Create" onclick="location.href='@Url.Action("Create", "User")'" />*@

@@ -30,12 +30,18 @@ namespace Lexiphone.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Lexiphone.Models.Customer> Customers { get; set; }
+       
 
         public System.Data.Entity.DbSet<Lexiphone.Models.Order> Orders { get; set; }
 
         public System.Data.Entity.DbSet<Lexiphone.Models.OrderRow> OrderRows { get; set; }
 
         public System.Data.Entity.DbSet<Lexiphone.Models.Product> Products { get; set; }
+
+        public System.Data.Entity.DbSet<Lexiphone.Models.Brand> Brands { get; set; }
+
+        public System.Data.Entity.DbSet<Lexiphone.Models.Category> Categories { get; set; }
+
+        public System.Data.Entity.DbSet<Lexiphone.Models.Cart> Carts { get; set; }
     }
 }

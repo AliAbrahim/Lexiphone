@@ -17,7 +17,8 @@ namespace Lexiphone.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            return View(db.Products.ToList());
+            var products = db.Products.Include(p => p.Brand);
+            return View(products.ToList());
         }
 
         // GET: Products/Details/5
@@ -38,6 +39,7 @@ namespace Lexiphone.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
+            ViewBag.BrandId = new SelectList(db.Brands, "BrandId", "Name");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace Lexiphone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,CurrentPrice,Stock,Category")] Product product)
+        public ActionResult Create([Bind(Include = "ProductId,Name,Description,CurrentPrice,Stock,ProductUrl,CatId,BrandId")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace Lexiphone.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.BrandId = new SelectList(db.Brands, "BrandId", "Name", product.BrandId);
             return View(product);
         }
 
@@ -70,6 +73,7 @@ namespace Lexiphone.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.BrandId = new SelectList(db.Brands, "BrandId", "Name", product.BrandId);
             return View(product);
         }
 
@@ -78,7 +82,7 @@ namespace Lexiphone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,CurrentPrice,Stock,Category")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductId,Name,Description,CurrentPrice,Stock,ProductUrl,CatId,BrandId")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace Lexiphone.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.BrandId = new SelectList(db.Brands, "BrandId", "Name", product.BrandId);
             return View(product);
         }
 

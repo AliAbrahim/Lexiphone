@@ -5,17 +5,24 @@ namespace Lexiphone.Models
 {
     public class Product
     {
-        public int Id { get; set; }
+        [Key]
+        public int ProductId { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
         [Display(Name = "Current Price")]
-        public float CurrentPrice { get; set; }
+        public decimal CurrentPrice { get; set; }
         public int Stock { get; set; }
-        [Required]
-        public string Category { get; set; }
+        public string ProductUrl { get; set; }
+
+
+        public int CatId { get; set; }
+        public Category Category { get; set; }
         public List<OrderRow> OrderRows { get; set; }
+
+        public int BrandId { get; set; }
+        public Brand Brand { get; set; }
 
 
     }

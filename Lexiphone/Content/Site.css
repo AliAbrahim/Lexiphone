@@ -25,3 +25,8 @@ textarea {
 #cart{
     display:inline-block;
 }
+
+#carousel {
+  width:640px;
+  height:360px;
+}
