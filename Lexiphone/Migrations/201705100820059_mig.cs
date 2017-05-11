@@ -3,34 +3,46 @@ namespace Lexiphone.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class mig0 : DbMigration
+    public partial class mig : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Customers",
+                "dbo.Brands",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        FirstName = c.String(nullable: false),
-                        LastName = c.String(nullable: false),
-                        Email = c.String(nullable: false),
-                        Address = c.String(nullable: false),
-                        Phone = c.Int(nullable: false),
+                        BrandId = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.BrandId);
             
             CreateTable(
-                "dbo.Orders",
+                "dbo.Products",
+                c => new
+                    {
+                        ProductId = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                        Description = c.String(nullable: false),
+                        CurrentPrice = c.Single(nullable: false),
+                        Stock = c.Int(nullable: false),
+                        CatId = c.Int(nullable: false),
+                        BrandId = c.Int(nullable: false),
+                        Category_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.ProductId)
+                .ForeignKey("dbo.Brands", t => t.BrandId, cascadeDelete: true)
+                .ForeignKey("dbo.Categories", t => t.Category_Id)
+                .Index(t => t.BrandId)
+                .Index(t => t.Category_Id);
+            
+            CreateTable(
+                "dbo.Categories",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CustomerId = c.Int(nullable: false),
-                        OrderDate = c.DateTime(nullable: false),
+                        Name = c.String(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Customers", t => t.CustomerId, cascadeDelete: true)
-                .Index(t => t.CustomerId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.OrderRows",
@@ -49,17 +61,24 @@ namespace Lexiphone.Migrations
                 .Index(t => t.ProductId);
             
             CreateTable(
-                "dbo.Products",
+                "dbo.Orders",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false),
-                        Description = c.String(nullable: false),
-                        CurrentPrice = c.Single(nullable: false),
-                        Stock = c.Int(nullable: false),
-                        Category = c.String(nullable: false),
+                        OrderId = c.Int(nullable: false, identity: true),
+                        Username = c.String(nullable: false),
+                        FirstName = c.String(nullable: false),
+                        LastName = c.String(nullable: false),
+                        Address = c.String(nullable: false),
+                        City = c.String(),
+                        State = c.String(),
+                        PostalCode = c.String(nullable: false),
+                        Country = c.String(nullable: false),
+                        Phone = c.String(nullable: false),
+                        Email = c.String(nullable: false),
+                        Total = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        OrderDate = c.DateTime(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.OrderId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -139,7 +158,8 @@ namespace Lexiphone.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.OrderRows", "ProductId", "dbo.Products");
             DropForeignKey("dbo.OrderRows", "OrderId", "dbo.Orders");
-            DropForeignKey("dbo.Orders", "CustomerId", "dbo.Customers");
+            DropForeignKey("dbo.Products", "Category_Id", "dbo.Categories");
+            DropForeignKey("dbo.Products", "BrandId", "dbo.Brands");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
@@ -148,16 +168,18 @@ namespace Lexiphone.Migrations
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.OrderRows", new[] { "ProductId" });
             DropIndex("dbo.OrderRows", new[] { "OrderId" });
-            DropIndex("dbo.Orders", new[] { "CustomerId" });
+            DropIndex("dbo.Products", new[] { "Category_Id" });
+            DropIndex("dbo.Products", new[] { "BrandId" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Products");
-            DropTable("dbo.OrderRows");
             DropTable("dbo.Orders");
-            DropTable("dbo.Customers");
+            DropTable("dbo.OrderRows");
+            DropTable("dbo.Categories");
+            DropTable("dbo.Products");
+            DropTable("dbo.Brands");
         }
     }
 }

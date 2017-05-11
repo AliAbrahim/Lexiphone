@@ -17,8 +17,7 @@ namespace Lexiphone.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            var orders = db.Orders.Include(o => o.Customers);
-            return View(orders.ToList());
+            return View(db.Orders.ToList());
         }
 
         // GET: Orders/Details/5
@@ -39,7 +38,6 @@ namespace Lexiphone.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name");
             return View();
         }
 
@@ -48,7 +46,7 @@ namespace Lexiphone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CustomerId,OrderDate")] Order order)
+        public ActionResult Create([Bind(Include = "OrderId,Username,FirstName,LastName,Address,City,State,PostalCode,Country,Phone,Email,Total,OrderDate")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +55,6 @@ namespace Lexiphone.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", order.CustomerId);
             return View(order);
         }
 
@@ -73,7 +70,6 @@ namespace Lexiphone.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", order.CustomerId);
             return View(order);
         }
 
@@ -82,7 +78,7 @@ namespace Lexiphone.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CustomerId,OrderDate")] Order order)
+        public ActionResult Edit([Bind(Include = "OrderId,Username,FirstName,LastName,Address,City,State,PostalCode,Country,Phone,Email,Total,OrderDate")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +86,6 @@ namespace Lexiphone.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", order.CustomerId);
             return View(order);
         }
 
