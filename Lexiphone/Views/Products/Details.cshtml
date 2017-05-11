@@ -4,13 +4,21 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Product Details</h2>
 
 <div>
-    <h4>Product</h4>
+    <h4> </h4>
     <hr />
     <dl class="dl-horizontal">
        
+        <dd>
+
+            <img alt="@Model.Name"
+                 src="@Model.ProductUrl" />
+
+        </dd>
+
+
 
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -60,12 +68,7 @@
         <dd>
             @Html.DisplayFor(model => model.CatId)
         </dd>
-        <dd>
-
-            <img alt="@Model.Name"
-                 src="@Model.ProductUrl" />
-
-        </dd>
+        
 
     </dl>
 </div>
