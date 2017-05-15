@@ -52,7 +52,7 @@ namespace Lexiphone.Controllers
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
             // Get the name of the album to display confirmation
-            string albumName = storeDB.Carts
+            string productName = storeDB.Carts
                 .Single(item => item.RecordId == id).Product.Name;
 
             // Remove from cart
@@ -61,7 +61,7 @@ namespace Lexiphone.Controllers
             // Display the confirmation message
             var results = new ShoppingCartRemoveViewModel
             {
-                Message = Server.HtmlEncode(albumName) +
+                Message = Server.HtmlEncode(productName) +
                     " has been removed from your shopping cart.",
                 CartTotal = cart.GetTotal(),
                 CartCount = cart.GetCount(),

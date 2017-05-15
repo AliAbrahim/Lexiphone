@@ -7,10 +7,9 @@ using System.Web.Mvc;
 
 namespace Lexiphone.Models
 {
-    public class ShoppingCart
+    public partial class ShoppingCart
     {
         ApplicationDbContext WebDB = new ApplicationDbContext();
-        [Key]
         string ShoppingCartId { get; set; }
         public const string CartSessionKey = "CartId";
         public static ShoppingCart GetCart(HttpContextBase context)
@@ -26,7 +25,7 @@ namespace Lexiphone.Models
         }
         public void AddToCart(Product product)
         {
-            // Get the matching cart and album instances
+            // Get the matching cart and product instances
             var cartItem = WebDB.Carts.SingleOrDefault(
                 c => c.CartId == ShoppingCartId
                 && c.ProductId == product.ProductId);

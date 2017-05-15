@@ -37,6 +37,7 @@ namespace Lexiphone.Controllers
         }
 
         // GET: Products/Create
+        [Authorize(Roles ="admin")]
         public ActionResult Create()
         {
             ViewBag.BrandId = new SelectList(db.Brands, "BrandId", "Name");
@@ -46,6 +47,7 @@ namespace Lexiphone.Controllers
         // POST: Products/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductId,Name,Description,CurrentPrice,Stock,ProductUrl,CatId,BrandId")] Product product)
@@ -62,6 +64,7 @@ namespace Lexiphone.Controllers
         }
 
         // GET: Products/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,6 +83,7 @@ namespace Lexiphone.Controllers
         // POST: Products/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ProductId,Name,Description,CurrentPrice,Stock,ProductUrl,CatId,BrandId")] Product product)
@@ -95,6 +99,7 @@ namespace Lexiphone.Controllers
         }
 
         // GET: Products/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,6 +115,7 @@ namespace Lexiphone.Controllers
         }
 
         // POST: Products/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

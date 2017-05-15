@@ -17,13 +17,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("LEXIPHONE", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse" >
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("ROLE", "Index", "Role")</li>
+
                     <li style="margin-top:15px"><span style="margin-top:15px">@Html.ActionLink("Cart", "Register", "Account")<img  style="height:20px; width:22px;  " src="~/Photo/Icon/5559874-icon-shopping-cart-add-black-white.jpg" /></span></li>
                     @*<li><a href="@Url.Action("Home", "Index", "Home")" > <i class="glyphicon glyphicon-pencil icon-white"></i><span>
                                                                                                  <strong>Create</strong>

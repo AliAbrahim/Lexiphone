@@ -10,6 +10,7 @@ using Lexiphone.Models;
 
 namespace Lexiphone.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class BrandsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
