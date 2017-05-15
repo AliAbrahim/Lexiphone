@@ -1,25 +1,68 @@
 ﻿@model Lexiphone.Models.Product
 
+
+
+
 @{
+    ViewBag.Title = "Product- " + Model.Name;
+}
+<h2>@Model.Name</h2>
+<p>
+    <img alt="@Model.Name" src="@Model.ProductUrl" />
+</p>
+<div id="album-details">
+    <p>
+        <em>Genre:</em>
+        @Model.CurrentPrice
+    </p>
+    <p>
+        <em>Product:</em>
+        @Model.Name
+    </p>
+    <p>
+        <em>Price:</em>
+        @String.Format("{0:F}", Model.CurrentPrice)
+    </p>
+    <p class="button">
+        @Html.ActionLink("Add to cart", "AddToCart","ShoppingCart", new { id = Model.ProductId}, "")
+    </p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+@*@{
     ViewBag.Title = "Details";
 }
 
 <h2>Product Details</h2>
-
 <div>
     <h4> </h4>
     <hr />
-    <dl class="dl-horizontal">
-       
+    <dl class="dl-horizontal">     
         <dd>
-
             <img alt="@Model.Name"
                  src="@Model.ProductUrl" />
-
         </dd>
-
-
-
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
@@ -61,7 +104,7 @@
             @Html.DisplayFor(model => model.ProductUrl)
         </dd>*@
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.CatId)
         </dt>
 
@@ -73,7 +116,16 @@
     </dl>
 </div>
 
-    @*@Html.ActionLink("Add To Cart", "AddToCart","ShoppingCart")*@
+    @Html.ActionLink("Add To Cart", "AddToCart","ShoppingCart")
 <p class="button">
-    @Html.ActionLink("Add to cart", "AddToCart","ShoppingCart", new { id = Model.ProductId },"")| @Html.ActionLink("Back to List", "Index")|@Html.ActionLink("BUY","Index", "ShoppingCart")</p>
-</p>
+    <div class="btn btn-default" style="width:100px">  @Html.ActionLink("Add to cart", "AddToCart","ShoppingCart", new { id = Model.ProductId },"")</div>
+    <div class="btn btn-default" style="width:100px">  @Html.ActionLink("Back to List", "Index")</div>
+    <div class="btn btn-default" style="width:100px">  @Html.ActionLink("BUY", "Index", "ShoppingCart")</div>*@
+
+
+
+    @*@Html.ActionLink("Add to cart", "AddToCart","ShoppingCart", new { id = Model.ProductId },"")|
+     @Html.ActionLink("Back to List", "Index")|
+    @Html.ActionLink("BUY","Index", "ShoppingCart")</p>*@
+@*</p>*@
+

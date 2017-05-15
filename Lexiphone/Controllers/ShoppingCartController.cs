@@ -1,8 +1,13 @@
-﻿using Lexiphone.Models;
+﻿
+
+
+
+using Lexiphone.Models;
 using Lexiphone.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -32,8 +37,8 @@ namespace Lexiphone.Controllers
         public ActionResult AddToCart(int id)
         {
             // Retrieve the album from the database
-            var addedProduct= storeDB.Products
-                .Single(product => product.ProductId== id);
+            var addedProduct = storeDB.Products
+                .Single(product => product.ProductId == id);
 
             // Add it to the shopping cart
             var cart = ShoppingCart.GetCart(this.HttpContext);
@@ -43,17 +48,20 @@ namespace Lexiphone.Controllers
             // Go back to the main store page for more shopping
             return RedirectToAction("Index");
         }
-        //
-        // AJAX: /ShoppingCart/RemoveFromCart/5
+
+
+
+
+
+        //AJAX: /ShoppingCart/RemoveFromCart/5
         [HttpPost]
         public ActionResult RemoveFromCart(int id)
         {
             // Remove the item from the cart
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
-            // Get the name of the album to display confirmation
-            string productName = storeDB.Carts
-                .Single(item => item.RecordId == id).Product.Name;
+            // Get the name of the Product to display confirmation
+            string prodName = storeDB.Carts.Single(item => item.RecordId == id).Product.Name;
 
             // Remove from cart
             int itemCount = cart.RemoveFromCart(id);
@@ -61,8 +69,7 @@ namespace Lexiphone.Controllers
             // Display the confirmation message
             var results = new ShoppingCartRemoveViewModel
             {
-                Message = Server.HtmlEncode(productName) +
-                    " has been removed from your shopping cart.",
+                Message = Server.HtmlEncode(prodName) + " has been removed from your shopping cart.",
                 CartTotal = cart.GetTotal(),
                 CartCount = cart.GetCount(),
                 ItemCount = itemCount,
@@ -70,7 +77,41 @@ namespace Lexiphone.Controllers
             };
             return Json(results);
         }
-        //
+
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    ShoppingCartViewModel cart = storeDB.ShoppingCartViewModel.Find(id);
+        //    if (product == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(product);
+        //}
+
+        //// POST: Products/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Product product = storeDB.Products.Find(id);
+        //    storeDB.Products.Remove(product);
+        //    storeDB.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+
+
+
+
+
+
+
+
+
         // GET: /ShoppingCart/CartSummary
         [ChildActionOnly]
         public ActionResult CartSummary()
