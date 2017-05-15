@@ -2,7 +2,11 @@
 @{
     ViewBag.Title = "Shopping Cart";
 }
-<script src="/Scripts/jquery-1.4.4.min.js"type="text/javascript"></script>
+<script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script>
+<script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script>
+
+
+<script src="/Scripts/jquery-1.4.4.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(function () {
         // Document.ready -> link up remove event handler
@@ -11,28 +15,39 @@
             var recordToDelete = $(this).attr("data-id");
             if (recordToDelete != '') {
                 // Perform the ajax post
-                $.post("/ShoppingCart/RemoveFromCart", {"id": recordToDelete },
-                    function (data) {
-                        // Successful requests get here
-                        // Update the page elements
-                        if (data.ItemCount == 0) {
-                            $('#row-' + data.DeleteId).fadeOut('slow');
-                        } else {
-                            $('#item-count-' + data.DeleteId).text(data.ItemCount);
-                        }
-                        $('#cart-total').text(data.CartTotal);
-                        $('#update-message').text(data.Message);
-                        $('#cart-status').text('Cart (' + data.CartCount + ')');
-                    });
+                $.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete },
+                function (data) {
+                    // Successful requests get here
+                    // Update the page elements
+                    if (data.ItemCount == 0) {
+                        $('#row-' + data.DeleteId).fadeOut('slow');
+                    } else {
+                        $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                    }
+                    $('#row-' + data.DeleteId).fadeOut('slow');
+                    $('#cart-total').text(data.CartTotal);
+                    $('#update-message').text(data.Message);
+                    $('#cart-status').text('Cart (' + data.CartCount + ')');
+                });
             }
         });
     });
+    function handleUpdate() {
+        // Load and deserialize the returned JSON data
+        var json = context.get_data();
+        var data = Sys.Serialization.JavaScriptSerializer.deserialize(json);
+        // Update the page elements
+        if (data.ItemCount == 0) {
+            $('#row-' + data.DeleteId).fadeOut('slow');
+        } else {
+            $('#item-count-' + data.DeleteId).text(data.ItemCount);
+        }
+        $('#row-' + data.DeleteId).fadeOut('slow');
+        $('#cart-total').text(data.CartTotal);
+        $('#update-message').text(data.Message);
+        $('#cart-status').text('Cart (' + data.CartCount + ')');
+    }
 </script>
-
-
-
-
-
 
 
 
@@ -44,37 +59,38 @@
 </div>
 <table class="table table-responsive">
     <tr>
-        <th >
+        <th>
             Product Name
         </th>
-      
+
         <th>
             Price (each)
         </th>
-        <th >
+        <th>
             Quantity
         </th>
-        <th ></th>
+        <th></th>
     </tr>
-    @foreach (var item in
-        Model.CartItems)
+    @foreach (var item in Model.CartItems)
     {
         <tr id="row-@item.RecordId">
             <td>
-                @Html.ActionLink(item.Product.Name,"Details", "Store", new { id = item.ProductId }, null)
+                @Html.ActionLink(item.Product.Name, "Details", "Products", new { id = item.ProductId }, null)
             </td>
             <td>
                 @item.Product.CurrentPrice
             </td>
             <td id="item-count-@item.RecordId">
-                @item.Count
+                                @item.Count
             </td>
             <td>
-                <a href="#" class="RemoveLink" data-id="@item.RecordId">
-                    Remove
-                    from cart
-                </a>
-               
+                @*<a href="#" class="RemoveLink" data-id="@item.RecordId">Remove from cart </a>
+                @Ajax.ActionLink("Remove", "Index", "ShoppingCart", new { LoadingElementId = item.RecordId }, new AjaxOptions { OnSuccess = "handleUpdate" }, new { @class = "RemoveLink", @data_id = @item.RecordId })*@
+              
+                  @*<div class="btn btn-default" style="width:80px">  @Html.ActionLink("Delete", "Delete", new { id = item.RecordId })</div>*@
+  
+            
+            
             </td>
         </tr>
     }
@@ -89,11 +105,11 @@
         </td>
     </tr>
 
-   
+
 </table>
 
-<div class="btn btn-danger" >
-    @Html.ActionLink(">>", "AddressAndPayment", "Checkout") Finish Shopping
+<div class="btn btn-danger">
+    @Html.ActionLink(">>", "Create", "Orders") Finish Shopping
 </div>
 
 <div class="btn btn-primary">

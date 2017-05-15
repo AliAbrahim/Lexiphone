@@ -1,8 +1,13 @@
-﻿using Lexiphone.Models;
+﻿
+
+
+
+using Lexiphone.Models;
 using Lexiphone.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -32,8 +37,8 @@ namespace Lexiphone.Controllers
         public ActionResult AddToCart(int id)
         {
             // Retrieve the album from the database
-            var addedProduct= storeDB.Products
-                .Single(product => product.ProductId== id);
+            var addedProduct = storeDB.Products
+                .Single(product => product.ProductId == id);
 
             // Add it to the shopping cart
             var cart = ShoppingCart.GetCart(this.HttpContext);
@@ -47,8 +52,8 @@ namespace Lexiphone.Controllers
 
 
 
-        //
-        // AJAX: /ShoppingCart/RemoveFromCart/5
+
+        //AJAX: /ShoppingCart/RemoveFromCart/5
         [HttpPost]
         public ActionResult RemoveFromCart(int id)
         {
@@ -64,7 +69,7 @@ namespace Lexiphone.Controllers
             // Display the confirmation message
             var results = new ShoppingCartRemoveViewModel
             {
-                Message = Server.HtmlEncode(prodName) +" has been removed from your shopping cart.",
+                Message = Server.HtmlEncode(prodName) + " has been removed from your shopping cart.",
                 CartTotal = cart.GetTotal(),
                 CartCount = cart.GetCount(),
                 ItemCount = itemCount,
@@ -72,14 +77,14 @@ namespace Lexiphone.Controllers
             };
             return Json(results);
         }
-        //
+
         //public ActionResult Delete(int? id)
         //{
         //    if (id == null)
         //    {
         //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         //    }
-        //    Product product = db.Products.Find(id);
+        //    ShoppingCartViewModel cart = storeDB.ShoppingCartViewModel.Find(id);
         //    if (product == null)
         //    {
         //        return HttpNotFound();
@@ -92,9 +97,9 @@ namespace Lexiphone.Controllers
         //[ValidateAntiForgeryToken]
         //public ActionResult DeleteConfirmed(int id)
         //{
-        //    Product product = db.Products.Find(id);
-        //    db.Products.Remove(product);
-        //    db.SaveChanges();
+        //    Product product = storeDB.Products.Find(id);
+        //    storeDB.Products.Remove(product);
+        //    storeDB.SaveChanges();
         //    return RedirectToAction("Index");
         //}
 

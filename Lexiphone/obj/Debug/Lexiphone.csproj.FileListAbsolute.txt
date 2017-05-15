@@ -86,3 +86,6 @@ C:\Users\Lexicon\documents\visual studio 2015\Projects\Lexiphone\Lexiphone\obj\D
 C:\Users\Lexicon\documents\visual studio 2015\Projects\Lexiphone\Lexiphone\obj\Debug\Lexiphone.Migrations.saddoo.resources
 C:\Users\Lexicon\documents\visual studio 2015\Projects\Lexiphone\Lexiphone\obj\Debug\Lexiphone.Migrations.qwe.resources
 C:\Users\Lexicon\documents\visual studio 2015\Projects\Lexiphone\Lexiphone\obj\Debug\Lexiphone.csprojResolveAssemblyReference.cache
+C:\Users\Lexicon\documents\visual studio 2015\Projects\Lexiphone\Lexiphone\obj\Debug\Lexiphone.Migrations._33.resources
+C:\Users\Lexicon\documents\visual studio 2015\Projects\Lexiphone\Lexiphone\bin\Inject.dll
+C:\Users\Lexicon\documents\visual studio 2015\Projects\Lexiphone\Lexiphone\bin\Inject.xml
