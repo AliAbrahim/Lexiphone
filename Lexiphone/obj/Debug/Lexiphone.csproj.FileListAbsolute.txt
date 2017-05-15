@@ -85,3 +85,4 @@ C:\Users\Lexicon\documents\visual studio 2015\Projects\Lexiphone\Lexiphone\obj\D
 C:\Users\Lexicon\documents\visual studio 2015\Projects\Lexiphone\Lexiphone\obj\Debug\Lexiphone.Migrations.asdasd.resources
 C:\Users\Lexicon\documents\visual studio 2015\Projects\Lexiphone\Lexiphone\obj\Debug\Lexiphone.Migrations.saddoo.resources
 C:\Users\Lexicon\documents\visual studio 2015\Projects\Lexiphone\Lexiphone\obj\Debug\Lexiphone.Migrations.qwe.resources
+C:\Users\Lexicon\Documents\Visual Studio 2015\Projects\Lexiphone\Lexiphone\obj\Debug\Lexiphone.csprojResolveAssemblyReference.cache
