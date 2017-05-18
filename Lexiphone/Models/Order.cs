@@ -18,8 +18,9 @@ namespace Lexiphone.Models
 
         [Key]
         public int OrderId { get; set; }
+
         [Required]
-        [Display(Name = "User Name ")]
+        [Display(Name ="User Name")]
         public string Username { get; set; }
         [Required]
         [Display(Name = "First Name ")]

@@ -10,15 +10,35 @@ using Lexiphone.Models;
 
 namespace Lexiphone.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Orders
+        //GET: Orders
         public ActionResult Index()
         {
             return View(db.Orders.ToList());
         }
+        //public ActionResult Index(string sortorder)
+        //{
+        //    ViewBag.EmailSortParam= string.IsNullOrEmpty(sortorder)?"Email":" ";
+        //    ViewBag.DateSortParm= sortorder == "Email" ? "Email" : "Date";
+        //    var orders = from s in db.Orders
+        //                 select s;
+
+        //    switch (sortorder)
+        //    {
+        //        case "Email":
+        //            students = students.OrderByDescending(s => s.LastName);
+        //            break;
+
+
+        //            return View(db.Orders.ToList());
+        //}
+
+
+
 
         // GET: Orders/Details/5
         public ActionResult Details(int? id)
@@ -36,6 +56,7 @@ namespace Lexiphone.Controllers
         }
 
         // GET: Orders/Create
+
         public ActionResult Create()
         {
             return View();

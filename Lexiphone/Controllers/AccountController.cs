@@ -9,12 +9,17 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Lexiphone.Models;
+using System.Web.Security;
+using System.Net;
+using Lexiphone.Controllers;
+using Microsoft.Owin.Logging;
 
 namespace Lexiphone.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -61,11 +66,26 @@ namespace Lexiphone.Controllers
             return View();
         }
 
-        //
+        // //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        //my
+        //public async Task<ActionResult> Login(LoginViewModel model, string returnUrl = null)
+        //{
+        //    if(! ModelState.IsValid)
+        //    {
+        //        return View(model);
+        //    }
+        //    var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+        //    if (result.Success)
+        //    {
+        //        ILogger.LogInformation("")
+        //    }
+        //}
+
+        //stander
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
@@ -90,7 +110,7 @@ namespace Lexiphone.Controllers
                     return View(model);
             }
         }
-
+        //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
@@ -142,7 +162,7 @@ namespace Lexiphone.Controllers
             return View();
         }
 
-        //
+        //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
@@ -155,8 +175,8 @@ namespace Lexiphone.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -171,6 +191,8 @@ namespace Lexiphone.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
         //
         // GET: /Account/ConfirmEmail
@@ -426,6 +448,7 @@ namespace Lexiphone.Controllers
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
+        private HttpStatusCode createStatus;
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -481,5 +504,15 @@ namespace Lexiphone.Controllers
             }
         }
         #endregion
+
+        //USERNAME IN STATE OF EMAIL
+        //private void MigrateShoppingCart(string Email)
+        //{
+        //    // Associate shopping cart items with logged-in user
+        //    var cart = ShoppingCart.GetCart(this.HttpContext);
+
+        //    cart.MigrateCart(Email);
+        //    Session[ShoppingCart.CartSessionKey] = Email;
+        //}
     }
 }

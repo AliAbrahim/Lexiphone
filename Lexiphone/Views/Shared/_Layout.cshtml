@@ -1,6 +1,8 @@
-﻿<!DOCTYPE html>
+﻿    <!DOCTYPE html>
 <html>
 <head>
+    <link rel="shortcut icon" type="image/x-icon" href="http://webwonks.org/WebBuilding/images/lg_favicon.gif" />
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
@@ -8,7 +10,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
+<body style="background-color:lightgray">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -24,12 +26,15 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li >@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
                     <li>@Html.ActionLink("ROLE", "Index", "Role")</li>
 
-                    <li style="margin-top:15px"><span style="margin-top:15px">@Html.ActionLink("Cart", "Register", "Account")<img  style="height:20px; width:22px;  " src="~/Photo/Icon/5559874-icon-shopping-cart-add-black-white.jpg" /></span></li>
+                    @*<li style="margin-top:15px"><span class="glyphicon glyphicon-shopping-cart">@Html.ActionLink("Cart", "Create", "Orders")</span></li>*@
                     @*<li><a href="@Url.Action("Home", "Index", "Home")" > <i class="glyphicon glyphicon-pencil icon-white"></i><span>
-                                                                                                 <strong>Create</strong>
+                                                                                                <strong>Create</strong>
                                                                                                                 </span></a></li>*@
+                
+                <li></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
