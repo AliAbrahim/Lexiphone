@@ -23,7 +23,7 @@
         <em>Price:</em>
         @String.Format("{0:F}", Model.CurrentPrice)
     </p>
-    <p class="button">
+    <p class="btn">
         @Html.ActionLink("Add to cart", "AddToCart","ShoppingCart", new { id = Model.ProductId}, "")
     </p>
 </div>

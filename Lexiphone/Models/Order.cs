@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Lexiphone.Models
 {
-    public class Order
+    [Bind(Exclude ="OrderId")]
+    public partial class Order
     {
         //public int Id { get; set; }
         //public int CustomerId { get; set; }
         //public Customer Customers { get; set; }
-        [Required]
-        [Display(Name = "Order Date")]
+        //[Required]
+        //[Display(Name = "Order Date")]
         //public DateTime? OrderDate { get; set; }
         //public List<OrderRow> OrderRows { get; set; }
 
-        [Key]
         public int OrderId { get; set; }
-        [Required]
         [Display(Name = "User Name ")]
         public string Username { get; set; }
         [Required]
@@ -29,7 +29,7 @@ namespace Lexiphone.Models
         public string LastName { get; set; }
         [Required]
         public string Address { get; set; }
-
+        [Required]
         public string City { get; set; }
         public string State { get; set; }
         [Required]
