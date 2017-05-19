@@ -262,6 +262,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Photo\Icon\5559874-icon-shopping-cart-add-black-white.jpg" />
+    <Content Include="Photo\Icon\icon-mobile-integration.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

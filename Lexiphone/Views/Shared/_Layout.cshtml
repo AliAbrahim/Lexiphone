@@ -1,7 +1,12 @@
 ﻿    <!DOCTYPE html>
 <html>
 <head>
-    <link rel="shortcut icon" type="image/x-icon" href="http://webwonks.org/WebBuilding/images/lg_favicon.gif" />
+    <link rel="shortcut icon" type="image/x-icon" href="http://icongal.com/gallery/image/69070/front_apple_iphone_black.png" />
+    @*//*@
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    @*//*@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +27,7 @@
                 @Html.ActionLink("LEXIPHONE", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse" >
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" style="float:right">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
@@ -43,13 +48,26 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        @*<footer>
             <p>&copy; @DateTime.Now.Year - LEXEPHONE</p>
-        </footer>
+        </footer>*@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-opacity w3-xlarge" style="margin-top:128px">
+        <a href="https://sv-se.facebook.com/"><i class="fa fa-facebook-official"></i></a>
+        <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
+        <a href="https://www.snapchat.com/l/sv-se/"><i class="fa fa-snapchat"></i></a>
+        <a href="https://www.pinterest.se/"><i class="fa fa-pinterest-p"></i></a>
+        <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+        <a href="https://se.linkedin.com/"><i class="fa fa-linkedin"></i></a>
+        <p class="w3-medium"> <a href="http://www.lexicon.se/Businesscenters/Lexicon-Skovde/" target="_blank" class="w3-hover-text-green">LEXIKON</a></p>
+
+        <p>&copy; @DateTime.Now.Year - ASP.NET LEXEPHONE</p>
+    </footer>
+
 </body>
 </html>
