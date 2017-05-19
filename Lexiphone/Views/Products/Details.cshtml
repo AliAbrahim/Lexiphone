@@ -1,31 +1,40 @@
 ﻿@model Lexiphone.Models.Product
-
-
-
-
 @{
     ViewBag.Title = "Product- " + Model.Name;
 }
-<h2>@Model.Name</h2>
-<p>
-    <img alt="@Model.Name" src="@Model.ProductUrl" />
-</p>
-<div id="album-details">
+
+
+    <h2>@Model.Name</h2>
+<div id="album-details" style="border-color:black; border-style:inset">
     <p>
-        <em>Genre:</em>
-        @Model.CurrentPrice
+        <img alt="@Model.Name" src="@Model.ProductUrl" />
     </p>
-    <p>
+
+    <h4>
+        <em>Description:</em>
+        @Model.Description
+    </h4>
+    <h4>
         <em>Product:</em>
         @Model.Name
-    </p>
-    <p>
+    </h4>
+    <h4>
         <em>Price:</em>
         @String.Format("{0:F}", Model.CurrentPrice)
-    </p>
-    <p class="btn">
-        @Html.ActionLink("Add to cart", "AddToCart","ShoppingCart", new { id = Model.ProductId}, "")
-    </p>
+    </h4>
+    <p class="btn btn-danger">
+        @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = Model.ProductId },  "")
+    @*<p><a class="btn btn-default" href="@Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = Model.ProductId }, "")">&raquo;</a></p>*@
+        
+        </p>
+    @*new  with {.class = "btn" }*@
+
+
+
+
+
+
+
 </div>
 
 
@@ -46,8 +55,6 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 
 @*@{
@@ -58,7 +65,7 @@
 <div>
     <h4> </h4>
     <hr />
-    <dl class="dl-horizontal">     
+    <dl class="dl-horizontal">
         <dd>
             <img alt="@Model.Name"
                  src="@Model.ProductUrl" />
@@ -95,7 +102,7 @@
             @Html.DisplayFor(model => model.Stock)
         </dd>
 
-        
+
         @*<dt>
             @Html.DisplayNameFor(model => model.ProductUrl)
         </dt>
@@ -111,7 +118,7 @@
         <dd>
             @Html.DisplayFor(model => model.CatId)
         </dd>
-        
+
 
     </dl>
 </div>

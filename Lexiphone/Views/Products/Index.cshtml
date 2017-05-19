@@ -13,7 +13,7 @@
     
 @foreach (var item in Model)
 {
-    <tr style="font-size:large">
+    <tr style="font-size:large" class="table-striped">
         <th style="text-align:center">
             @Html.DisplayNameFor(model => model.Brand.Name)
         </th>
@@ -36,8 +36,8 @@
         <th></th>
     </tr>
 
-    <tr>
-        <td>
+    <tr style="text-align:center">
+        <td >
             @Html.DisplayFor(modelItem => item.Brand.Name)
         </td>
         <td>
@@ -49,19 +49,35 @@
         <td>
             @Html.DisplayFor(modelItem => item.CurrentPrice)
         </td>
-        <td>
+        <td >
             @Html.DisplayFor(modelItem => item.Stock)
         </td>
         <td >
-            <img src="@Html.DisplayFor(modelItem => item.ProductUrl)"/>
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.CatId)
-        </td>*@
+            <div class="text-center" style="width:600px">
+            <img src="@Html.DisplayFor(modelItem => item.ProductUrl)" alt="..." class="rounded mx-auto d-block"  style="width:600px"/>
+            </div>
+         </td>
+       
         <td style="color:yellow">
-            <div class="btn btn-default" style="width:80px; "> @Html.ActionLink("Edit", "Edit", new { id = item.ProductId })</div> 
-            <div class="btn btn-default"style="width:80px">@Html.ActionLink("Details", "Details", new { id = item.ProductId })</div> 
-            <div class="btn btn-default"style="width:80px">  @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })</div>
+           
+            
+            
+            @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = "btn btn-primary", @style = "color:black; width:80px" })
+
+            @Html.ActionLink("Details", "Details", new { id = item.ProductId }, new { @class = "btn btn-primary", @style = "color:darkgreen; width:80px" })
+
+            @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { @class = "btn btn-primary", @style = "color:black; width:80px" })
+
+
+
+
+
+            @*<div class="btn btn-default"style="width:80px">@Html.ActionLink("Details", "Details", new { id = item.ProductId })</div> 
+            <div class="btn btn-default"style="width:80px">  @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })</div>*@
+            
+
+
+
            
 </td>
     </tr>
