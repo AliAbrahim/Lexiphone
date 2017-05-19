@@ -202,7 +202,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\CartsController.cs" />
-    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CheckOutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -214,27 +213,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705151306186_newUser.cs" />
-    <Compile Include="Migrations\201705151306186_newUser.Designer.cs">
-      <DependentUpon>201705151306186_newUser.cs</DependentUpon>
+    <Compile Include="Migrations\201705191026032_initial.cs" />
+    <Compile Include="Migrations\201705191026032_initial.Designer.cs">
+      <DependentUpon>201705191026032_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705160711188_new2.cs" />
-    <Compile Include="Migrations\201705160711188_new2.Designer.cs">
-      <DependentUpon>201705160711188_new2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705160731592_new3.cs" />
-    <Compile Include="Migrations\201705160731592_new3.Designer.cs">
-      <DependentUpon>201705160731592_new3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705161039408_new31.cs" />
-    <Compile Include="Migrations\201705161039408_new31.Designer.cs">
-      <DependentUpon>201705161039408_new31.cs</DependentUpon>
+    <Compile Include="Migrations\201705191037382_new.cs" />
+    <Compile Include="Migrations\201705191037382_new.Designer.cs">
+      <DependentUpon>201705191037382_new.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Cart.cs" />
-    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
@@ -322,11 +312,6 @@
     <Content Include="Views\Brands\Details.cshtml" />
     <Content Include="Views\Brands\Edit.cshtml" />
     <Content Include="Views\Brands\Index.cshtml" />
-    <Content Include="Views\Categories\Create.cshtml" />
-    <Content Include="Views\Categories\Delete.cshtml" />
-    <Content Include="Views\Categories\Details.cshtml" />
-    <Content Include="Views\Categories\Edit.cshtml" />
-    <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Carts\Create.cshtml" />
     <Content Include="Views\Carts\Delete.cshtml" />
     <Content Include="Views\Carts\Details.cshtml" />
@@ -343,10 +328,10 @@
     <Content Include="Views\Role\AssignRoleToUser.cshtml" />
     <Content Include="Views\CheckOut\AddressAndPayment.cshtml" />
     <Content Include="Views\CheckOut\Complete.cshtml" />
+    <Content Include="Views\Role\UsersList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Shopping\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -357,17 +342,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705151306186_newUser.resx">
-      <DependentUpon>201705151306186_newUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705191026032_initial.resx">
+      <DependentUpon>201705191026032_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705160711188_new2.resx">
-      <DependentUpon>201705160711188_new2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705160731592_new3.resx">
-      <DependentUpon>201705160731592_new3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705161039408_new31.resx">
-      <DependentUpon>201705161039408_new31.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705191037382_new.resx">
+      <DependentUpon>201705191037382_new.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
