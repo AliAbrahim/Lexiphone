@@ -39,8 +39,8 @@
         <th></th>
     </tr>
 
-    <tr>
-        <td>
+    <tr style="text-align:center">
+        <td >
             @Html.DisplayFor(modelItem => item.Brand.Name)
         </td>
         <td>
@@ -52,15 +52,15 @@
         <td>
             @Html.DisplayFor(modelItem => item.CurrentPrice)
         </td>
-        <td>
+        <td >
             @Html.DisplayFor(modelItem => item.Stock)
         </td>
         <td >
-            <img src="@Html.DisplayFor(modelItem => item.ProductUrl)"/>
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.CatId)
-        </td>*@
+            <div class="text-center" style="width:600px">
+            <img src="@Html.DisplayFor(modelItem => item.ProductUrl)" alt="..." class="rounded mx-auto d-block"  style="width:600px"/>
+            </div>
+         </td>
+       
         <td style="color:yellow">
            
             
