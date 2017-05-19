@@ -12,8 +12,7 @@ namespace Lexiphone.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            ContextKey = "Lexiphone.Models.ApplicationDbContext";
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(Lexiphone.Models.ApplicationDbContext context)
@@ -26,28 +25,26 @@ namespace Lexiphone.Migrations
                 roleManager.Create(role);
 
             }
-            if (!context.Users.Any(u =>u.UserName=="admin@lexiphone.com"))
+            if (!context.Users.Any(u => u.UserName == "admin@lexiphone.com"))
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser { UserName = "admin@lexiphone.com",Email="admin@lexiphone.com",LockoutEnabled=true };
+                var user = new ApplicationUser { UserName = "admin@lexiphone.com", Email = "admin@lexiphone.com", LockoutEnabled = true };
                 manager.Create(user, "Password@123");
                 manager.AddToRole(user.Id, "admin");
+                //  This method will be called after migrating to the latest version.
 
+                //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+                //  to avoid creating duplicate seed data. E.g.
+                //
+                //    context.People.AddOrUpdate(
+                //      p => p.FullName,
+                //      new Person { FullName = "Andrew Peters" },
+                //      new Person { FullName = "Brice Lambson" },
+                //      new Person { FullName = "Rowan Miller" }
+                //    );
+                //
             }
-
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
         }
     }
 }
