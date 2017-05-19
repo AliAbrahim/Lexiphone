@@ -10,7 +10,6 @@ namespace Lexiphone.Models
     public partial class ShoppingCart
     {
         ApplicationDbContext storeDB = new ApplicationDbContext();
-        [Key]
         string ShoppingCartId { get; set; }
         public const string CartSessionKey = "CartId";
         public static ShoppingCart GetCart(HttpContextBase context)
