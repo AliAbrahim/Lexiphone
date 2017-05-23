@@ -32,20 +32,24 @@ namespace Lexiphone.Controllers
                 //{
                 order.Username = User.Identity.Name;
                 order.OrderDate = DateTime.Now;
-                order.FirstName = myOrder.FirstName;
-                order.LastName = myOrder.LastName;
-                order.Phone = myOrder.Phone;
-                order.PostalCode = myOrder.PostalCode;
-                order.State = myOrder.State;
-                order.Email = myOrder.Email;
-                order.Address = myOrder.Address;
-                order.City = myOrder.City;
-                order.Country = myOrder.Country;
-                db.Orders.Add(order);
-                db.SaveChanges();
-                    var cart = ShoppingCart.GetCart(this.HttpContext);
+                //order.FirstName = myOrder.FirstName;
+                //order.LastName = myOrder.LastName;
+                //order.Phone = myOrder.Phone;
+                //order.PostalCode = myOrder.PostalCode;
+                //order.State = myOrder.State;
+                //order.Email = myOrder.Email;
+                //order.Address = myOrder.Address;
+                //order.City = myOrder.City;
+                //order.Country = myOrder.Country;
+
+                var cart = ShoppingCart.GetCart(this.HttpContext);
                     cart.CreateOrder(order);
-                    return RedirectToAction("Complete", new { id = order.OrderId });
+                order.Total = cart.GetTotal();
+                db.Orders.Add(order);
+
+                db.SaveChanges();
+
+                return RedirectToAction("Complete", new { id = order.OrderId });
                 //}
             }
             catch

@@ -42,11 +42,9 @@ namespace Lexiphone.Controllers
         }
 
         // POST: Orders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderId,Username,FirstName,LastName,Address,City,State,PostalCode,Country,Phone,Email,Total,OrderDate")] Order order)
+        public ActionResult Create(Order order)
         {
             if (ModelState.IsValid)
             {
@@ -74,11 +72,9 @@ namespace Lexiphone.Controllers
         }
 
         // POST: Orders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderId,Username,FirstName,LastName,Address,City,State,PostalCode,Country,Phone,Email,Total,OrderDate")] Order order)
+        public ActionResult Edit(Order order)
         {
             if (ModelState.IsValid)
             {
