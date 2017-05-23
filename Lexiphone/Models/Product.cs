@@ -17,13 +17,11 @@ namespace Lexiphone.Models
         [Display(Name ="Photo")]
         public string ProductUrl { get; set; }
 
-
-        public int CatId { get; set; }
-        public Category Category { get; set; }
-        public List<OrderRow> OrderRows { get; set; }
-
         public int BrandId { get; set; }
         public Brand Brand { get; set; }
+
+        public List<OrderRow> OrderRows { get; set; }
+
 
 
     }

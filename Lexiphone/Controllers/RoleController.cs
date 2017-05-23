@@ -38,6 +38,11 @@ namespace Lexiphone.Controllers
             var roles = ctx.Roles.ToList();
             return View(roles);
         }
+        public ActionResult UsersList()
+        {
+            var userList = ctx.Users.ToList();
+            return View(userList);
+        }
 
 
         // GET: Role/Create
