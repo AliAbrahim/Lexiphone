@@ -1,4 +1,4 @@
-﻿    <!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <link rel="shortcut icon" type="image/x-icon" href="http://icongal.com/gallery/image/69070/front_apple_iphone_black.png" />
@@ -26,14 +26,14 @@
                 </button>
                 @Html.ActionLink("LEXIPHONE", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse" >
+            <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" style="float:right">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            SITE 
+                            SITE
                             <span class="glyphicon glyphicon-align-justify"></span>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="background-color:darkturquoise">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
@@ -45,32 +45,22 @@
                             ACTIVITY
                             <span class="glyphicon glyphicon-align-justify"></span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li>@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
+                        <ul class="dropdown-menu" style="background-color:darkturquoise">
+
+                            <li>@Html.Partial("_LoginPartial")</li>
                             <li>@Html.ActionLink("ROLE", "Index", "Role")</li>
-                            
+
                         </ul>
                     </li>
-
-                    <li>@Html.Partial("_LoginPartial")</li>
-                        @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                   
-                        @*<li >@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
-                        <li>@Html.ActionLink("ROLE", "Index", "Role")</li>
-                        <li> @Html.Partial("_LoginPartial")</li>*@
+                    <li>@{Html.RenderAction("CartSummary", "ShoppingCart");}</li>
                 </ul>
-               
+
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        @*<footer>
-            <p>&copy; @DateTime.Now.Year - LEXEPHONE</p>
-        </footer>*@
     </div>
 
     @Scripts.Render("~/bundles/jquery")

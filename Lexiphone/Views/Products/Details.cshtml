@@ -4,30 +4,84 @@
 }
 
 
-    <h2>@Model.Name</h2>
-<div id="album-details" style="border-color:black; border-style:inset">
-    <p>
-        <img alt="@Model.Name" src="@Model.ProductUrl" />
-    </p>
+    <h2 style="text-align:center">@Model.Name</h2>
+<div id="album-details"  >
+   
+    
+     @*FROM HOME*@ 
 
-    <h4>
-        <em>Description:</em>
-        @Model.Description
-    </h4>
-    <h4>
-        <em>Product:</em>
-        @Model.Name
-    </h4>
-    <h4>
-        <em>Price:</em>
-        @String.Format("{0:F}", Model.CurrentPrice)
-    </h4>
-    <p class="btn btn-danger">
-        @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = Model.ProductId },  "")
-    @*<p><a class="btn btn-default" href="@Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = Model.ProductId }, "")">&raquo;</a></p>*@
-        
-        </p>
-    @*new  with {.class = "btn" }*@
+    <table class="table table-bordered" >
+        <tr style="background-color:cornflowerblue">
+
+            <th style="text-align:center">PRODUCT</th>
+            <th style="text-align:center">  INFO </th>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-sm-push-3">
+                    <img alt="@Model.Name" src="@Model.ProductUrl" />
+                </div>
+            </td>
+            <td>
+                <div class="col-sm-pull-3">
+                    <div class="w3-row; col-sm-push-3">
+                        <a href="javascript:void(0)" onclick="openCity(event, 'Product');">
+                            <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">MODEL</div>
+                        </a>
+                        <a href="javascript:void(0)" onclick="openCity(event, 'DESC');">
+                            <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Description</div>
+                        </a>
+                        <a href="javascript:void(0)" onclick="openCity(event, 'PRICE');">
+                            <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">PRICE</div>
+                        </a>
+
+
+                    </div>
+
+                    <div id="Product" class="w3-container city" style="display:none">
+                        <h2>@Model.Name </h2>
+                    </div>
+                    <div id="DESC" class="w3-container city" style="display:none">
+                        <h2>@Model.Description</h2>
+                    </div>
+                    <div id="PRICE" class="w3-container city" style="display:none">
+                        <h2>@String.Format("{0:F}", Model.CurrentPrice)</h2>
+                    </div>
+
+                </div>
+            </td>
+            
+        </tr>
+        <tr>
+            <td>
+                <p class="btn btn-danger" style="width:500px; text-align:center">
+                    @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = Model.ProductId }, "")
+                </p>
+            </td>
+        </tr>
+
+    </table>
+
+
+
+
+    <script>
+        function openCity(evt, cityName) {
+          var i, x, tablinks;
+          x = document.getElementsByClassName("city");
+          for (i = 0; i < x.length; i++) {
+             x[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablink");
+          for (i = 0; i < x.length; i++) {
+              tablinks[i].className = tablinks[i].className.replace(" w3-border-blue ", "");
+          }
+          document.getElementById(cityName).style.display = "block";
+          evt.currentTarget.firstElementChild.className += " w3-border-blue ";
+    }
+    </script>
+
+   
 
 
 

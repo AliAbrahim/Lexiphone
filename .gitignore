@@ -47,3 +47,7 @@ Temporary Items
 .apdisk
 *.mdf
 *.ldf
+*.suo
+Lexiphone/App_Data/aspnet-Lexiphone-20170509085805.mdf
+*.ldf
+Lexiphone/App_Data/aspnet-Lexiphone-20170509085805.mdf
