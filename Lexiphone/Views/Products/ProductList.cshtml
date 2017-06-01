@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Lexiphone.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p><h4>@Html.ActionLink("Create New", "Create")</h4>
+    <button class="btn btn-primary" style="background-color:black; float:right">
+            @Html.ActionLink("MAIN ADMIN", "Index", "Admin")
+        </button>
+</p>
+
+<table class="table table-bordered">
+
+    @foreach (var item in Model)
+    {
+        <tr style="font-size:large; background-color:green" class="table-striped">
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.Brand.Name)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.CurrentPrice)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.ProductUrl)
+            </th>
+
+            <th></th>
+        </tr>
+
+        <tr style="text-align:center">
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td style="text-align:justify">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                <div class="text-center" style="width:600px">
+                    <img src="@Html.DisplayFor(modelItem => item.ProductUrl)" alt="..." class="rounded mx-auto d-block" style="width:600px" />
+                </div>
+            </td>
+
+            <td style="color:yellow">
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = "btn btn-primary", @style = "color:black; width:80px" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { @class = "btn btn-primary", @style = "color:black; width:80px" })
+            </td>
+        </tr>
+    }
+
+</table>
+<button class="btn btn-primary" style="background-color:black">
+    @Html.ActionLink("MAIN ADMIN", "Index", "Admin")
+</button>

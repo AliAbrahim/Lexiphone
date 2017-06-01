@@ -7,16 +7,19 @@
 <h2>Roles</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", "Role") | @Html.ActionLink("Assign Role to user", "AssignRoleToUser", "Role")
+    <button class="btn btn-primary" style = "background-color:black">
+    @Html.ActionLink("Create New", "Create", "Role") 
+    </button>
+    <button class="btn btn-primary" style = "background-color:black">
+    @Html.ActionLink("Assign Role to user", "AssignRoleToUser", "Role")
+    </button>
 </p>
-<table class="table">
+<table class="active" style="background-color:darkgray">
     <tr>
-        <th>
+        <th style="background-color:black">
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Id)
-        </th>
+        
 
     </tr>
 
@@ -26,15 +29,19 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
+           
 
             <td>
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+               
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-primary", @style = "color:#00ffff; width:80px" })
             </td>
+            
         </tr>
     }
+   
 
 </table>
+<button class="btn btn-primary" style="background-color:black">
+    @Html.ActionLink("MAIN ADMIN", "Index", "Admin")
+</button>
 

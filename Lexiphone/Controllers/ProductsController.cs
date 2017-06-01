@@ -15,9 +15,12 @@ namespace Lexiphone.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Products
+
+            
+
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Brand);
+            var products = db.Products.Include(p => p.Brand) .Where(p=> p.Stock > 0);
             return View(products.ToList());
         }
 
@@ -29,7 +32,8 @@ namespace Lexiphone.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Product product = db.Products.Find(id);
-            if (product == null)
+            
+                if (product == null)
             {
                 return HttpNotFound();
             }
@@ -56,7 +60,7 @@ namespace Lexiphone.Controllers
             {
                 db.Products.Add(product);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ProductList", "Products");
             }
 
             ViewBag.BrandId = new SelectList(db.Brands, "BrandId", "Name", product.BrandId);
@@ -92,10 +96,11 @@ namespace Lexiphone.Controllers
             {
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ProductList", "Products");
             }
             ViewBag.BrandId = new SelectList(db.Brands, "BrandId", "Name", product.BrandId);
-            return View(product);
+            //return View(product);
+            return RedirectToAction("ProductList", "Products");
         }
 
         // GET: Products/Delete/5
@@ -123,7 +128,7 @@ namespace Lexiphone.Controllers
             Product product = db.Products.Find(id);
             db.Products.Remove(product);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("ProductList", "Products");
         }
 
         protected override void Dispose(bool disposing)
@@ -133,6 +138,13 @@ namespace Lexiphone.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        //A method which give the admin and only the admin the ability to control on the products 
+        [Authorize(Roles = "admin")]
+        public ActionResult ProductList()
+        {
+            var products = db.Products.Include(p => p.Brand).Where(p => p.Stock > 0);
+            return View(products.ToList());
         }
     }
 }

@@ -16,10 +16,8 @@ namespace Lexiphone.Models
         public int Stock { get; set; }
         [Display(Name ="Photo")]
         public string ProductUrl { get; set; }
-
         public int BrandId { get; set; }
         public Brand Brand { get; set; }
-
         public List<OrderRow> OrderRows { get; set; }
 
 

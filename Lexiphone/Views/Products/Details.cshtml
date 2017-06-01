@@ -18,20 +18,20 @@
         </tr>
         <tr>
             <td>
-                <div class="col-sm-push-3">
-                    <img alt="@Model.Name" src="@Model.ProductUrl" />
+                <div class="col-sm-push-3" >
+                    <img alt="@Model.Name" src="@Model.ProductUrl" style="width:700px;height:500px" />
                 </div>
             </td>
             <td>
                 <div class="col-sm-pull-3">
                     <div class="w3-row; col-sm-push-3">
-                        <a href="javascript:void(0)" onclick="openCity(event, 'Product');">
+                        <a href="javascript:void(0)" onclick="proinfo(event, 'Product');">
                             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">MODEL</div>
                         </a>
-                        <a href="javascript:void(0)" onclick="openCity(event, 'DESC');">
+                        <a href="javascript:void(0)" onclick="proinfo(event, 'DESC');">
                             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Description</div>
                         </a>
-                        <a href="javascript:void(0)" onclick="openCity(event, 'PRICE');">
+                        <a href="javascript:void(0)" onclick="proinfo(event, 'PRICE');">
                             <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">PRICE</div>
                         </a>
 
@@ -42,7 +42,8 @@
                         <h2>@Model.Name </h2>
                     </div>
                     <div id="DESC" class="w3-container city" style="display:none">
-                        <h2>@Model.Description</h2>
+                        <h2 style="text-align:justify">@Model.Description</h2>
+                        
                     </div>
                     <div id="PRICE" class="w3-container city" style="display:none">
                         <h2>@String.Format("{0:F}", Model.CurrentPrice)</h2>
@@ -54,19 +55,25 @@
         </tr>
         <tr>
             <td>
-                <p class="btn btn-danger" style="width:500px; text-align:center">
+                <p class="btn btn-danger" style="width:500px; text-align:center" onclick="myFunction()">
                     @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = Model.ProductId }, "")
                 </p>
+
+              
+
+
             </td>
         </tr>
 
     </table>
 
-
-
-
     <script>
-        function openCity(evt, cityName) {
+        function myFunction() {
+        alert("THE PRODUCT HAS BEEN ADDED TO YOUR CART!! TO CHECK OUT GO TO CART");
+        }
+    </script>
+    <script>
+        function proinfo(evt, cityName) {
           var i, x, tablinks;
           x = document.getElementsByClassName("city");
           for (i = 0; i < x.length; i++) {

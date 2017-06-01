@@ -80,8 +80,16 @@ namespace Lexiphone.Controllers
             {
                 case SignInStatus.Success:
                     {
+                        if(model.Email=="admin@lexiphone.com")
+                        {
+                            //return View("Admin","Index");
+                            return RedirectToAction("Index", "Admin");
+                            //return View(result ? "ConfirmEmail" : "Error")
+                        }
+                        else { 
                         MigrateShoppingCart(model.Email);
                         return RedirectToLocal(returnUrl);
+                        }
                     }
                 case SignInStatus.LockedOut:
                     return View("Lockout");

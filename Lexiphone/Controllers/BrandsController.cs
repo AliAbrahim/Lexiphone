@@ -53,7 +53,7 @@ namespace Lexiphone.Controllers
             {
                 db.Brands.Add(brand);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create","Products");
             }
 
             return View(brand);

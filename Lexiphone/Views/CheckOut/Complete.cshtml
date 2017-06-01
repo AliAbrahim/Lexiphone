@@ -2,10 +2,30 @@
 @{
     ViewBag.Title = "Complete";
 }
+<div>
+    <table>
+        <tr>
+        </tr>
+            <td><h1 style="color:sienna"> YOUR RECEIPT</h1></td>
 
-<h2>Checkout Complete</h2>
-<p>Thank you for your order! Your order number is: @ViewBag.id</p>
-<p>How about shopping for some more product in our
-    @Html.ActionLink("store","Index","Home")
-    </p>
+        <tr>
+            <td><h2>Thank you for your order!</h2>
+            <h2> Your order number is: @ViewBag.id</h2>
+                <h2> YOUR TOTAL AMOUNT IS @ViewBag.total</h2>
+                <h2> OUR BANK ACOUNT IS pg-0000000  </h2>
+                <h2> YOU HAVE 10 DAYS TO PAY FROM THIS DATE @ViewBag.time  </h2> 
 
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                <p><h3>How about shopping for some more product in our</h3></p>
+               <button class="btn btn-warning" style="width:100px"> @Html.ActionLink("STORE", "Index", "Products")</button>
+            </td>
+        </tr>
+        
+    </table>
+
+</div>

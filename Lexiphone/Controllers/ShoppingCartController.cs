@@ -32,17 +32,20 @@ namespace Lexiphone.Controllers
         // GET: /Store/AddToCart/5
         public ActionResult AddToCart(int id)
         {
-            // Retrieve the album from the database
+            // Retrieve the product from the database
+   
             var addedProduct = storeDB.Products
                 .Single(product => product.ProductId == id);
 
             // Add it to the shopping cart
-            var cart = ShoppingCart.GetCart(this.HttpContext);
 
-            cart.AddToCart(addedProduct);
-
+                var cart = ShoppingCart.GetCart(this.HttpContext);
+                addedProduct.Stock--;
+                storeDB.SaveChanges();
+                cart.AddToCart(addedProduct);
+           
             // Go back to the main store page for more shopping
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Products");
         }
 
 
@@ -61,6 +64,9 @@ namespace Lexiphone.Controllers
 
             // Remove from cart
             int itemCount = cart.RemoveFromCart(id);
+            var returnedProduct = storeDB.Products.Single(item => item.Name == prodName);
+            returnedProduct.Stock++;
+            storeDB.SaveChanges();
 
             // Display the confirmation message
             var results = new ShoppingCartRemoveViewModel
@@ -74,39 +80,7 @@ namespace Lexiphone.Controllers
             return Json(results);
         }
 
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    ShoppingCartViewModel cart = storeDB.ShoppingCartViewModel.Find(id);
-        //    if (product == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(product);
-        //}
-
-        //// POST: Products/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Product product = storeDB.Products.Find(id);
-        //    storeDB.Products.Remove(product);
-        //    storeDB.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-
-
-
-
-
-
-
-
-
+      
 
         // GET: /ShoppingCart/CartSummary
         [ChildActionOnly]

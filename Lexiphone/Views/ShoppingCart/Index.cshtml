@@ -69,11 +69,13 @@
                                 @item.Count
             </td>
             <td>
-               <a href="#" class="RemoveLink" data-id="@item.RecordId">REMOVE<span></span></a>
+               @*<a href="#" class="RemoveLink" data-id="@item.RecordId">REMOVE<span></span></a>*@
 
-                <input type="button" value="Remove" class="RemoveLink"
-                       data-id="@item.RecordId" style="background-color:red; height:35px" />
+                <input type="button" value="Remove" class="RemoveLink btn btn-primary btn-lg btn-block"
+                data-id="@item.RecordId" style="background-color:red; height:35px"/>
 
+                @*<input type="button" value="Continue Shopping" class="btn btn-danger;R"
+                       onclick="@("location.href='" + Url.Action("Index", "Products") + "'")" />*@
             
             
             </td>
@@ -97,7 +99,7 @@
     @Html.ActionLink(">>", "Create", "Orders") Finish Shopping
 </div>*@
 <input type="button" value="ORDER" class="btn btn-primary"
-       onclick="@("location.href='" + Url.Action("Create", "Orders") + "'")" />
+       onclick="@("location.href='" + Url.Action("AddressAndPayment", "CheckOut") + "'")" />
 
 
 @*<div class="btn btn-primary">

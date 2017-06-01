@@ -4,98 +4,95 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 style="color:darkgoldenrod;font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">LEXIPHONE PRODUCTS</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table table-bordered" >
-    
-@foreach (var item in Model)
-{
-    <tr style="font-size:large; background-color:green" class="table-striped">
-        <th style="text-align:center">
-            @Html.DisplayNameFor(model => model.Brand.Name)
-        </th>
-        <th style="text-align:center">
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th style="text-align:center">
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th style="text-align:center">
-            @Html.DisplayNameFor(model => model.CurrentPrice)
-        </th>
-        <th style="text-align:center">
-            @Html.DisplayNameFor(model => model.Stock)
-        </th>
-        <th style="text-align:center" >
-            @Html.DisplayNameFor(model => model.ProductUrl)
-        </th>
+@*<p>@Html.ActionLink("Create New", "Create")</p>*@
 
-        <th></th>
-    </tr>
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 
-    <tr style="text-align:center">
-        <td >
-            @Html.DisplayFor(modelItem => item.Brand.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CurrentPrice)
-        </td>
-        <td >
-            @Html.DisplayFor(modelItem => item.Stock)
-        </td>
-        <td >
-            <div class="text-center" style="width:600px">
-            <img src="@Html.DisplayFor(modelItem => item.ProductUrl)" alt="..." class="rounded mx-auto d-block"  style="width:600px"/>
-            </div>
-         </td>
-       
-        <td style="color:yellow">
-           
-            
-            
-            @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = "btn btn-primary", @style = "color:black; width:80px" })
 
-            @Html.ActionLink("Details", "Details", new { id = item.ProductId }, new { @class = "btn btn-primary", @style = "color:darkgreen; width:80px" })
+<table class="table table-bordered">
 
-            @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { @class = "btn btn-primary", @style = "color:black; width:80px" })
+    @foreach (var item in Model)
+    {
+        <tr style="font-size:large; background-color:green" class="table-striped">
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.Brand.Name)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            @*<th style="text-align:center">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>*@
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.CurrentPrice)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.ProductUrl)
+            </th>
+
+            <th></th>
+        </tr>
+
+        <tr style="text-align:center">
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            @*<td  style="text-align:justify" >
+                <strong> @Html.DisplayFor(modelItem => item.Description)</strong>
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                <div class="text-center" style="width:500px">
+                    <img src="@Html.DisplayFor(modelItem => item.ProductUrl)" alt="..." class="rounded mx-auto d-block" style="width:500px; height:300px" />
+                </div>
+            </td>
+
+            <td style="color:yellow">
 
 
 
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = "btn btn-primary", @style = "color:black; width:80px" })*@
+
+                @Html.ActionLink("Details", "Details", new { id = item.ProductId }, new { @class = "btn btn-primary", @style = "color:darkgreen; width:80px" })
+
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { @class = "btn btn-primary", @style = "color:black; width:80px" })*@
 
 
-            @*<div class="btn btn-default"style="width:80px">@Html.ActionLink("Details", "Details", new { id = item.ProductId })</div> 
-            <div class="btn btn-default"style="width:80px">  @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })</div>*@
-            
 
 
 
-           
-</td>
-    </tr>
-}
+                @*<div class="btn btn-default"style="width:80px">@Html.ActionLink("Details", "Details", new { id = item.ProductId })</div>
+                    <div class="btn btn-default"style="width:80px">  @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })</div>*@
+
+
+
+
+
+            </td>
+        </tr>
+    }
 
 </table>
 
 
-@*<div class="btn btn-danger">
-    @Html.ActionLink(">>", "AddressAndPayment", "Checkout") Finish Shopping
-</div>*@
-
-
-@*<p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>*@
-
-
-@*on klick
-<button onclick="myFunction()">Click me</button>*@
-
-
-@*<input type="button" value="Create" onclick="location.href='@Url.Action("Create", "User")'" />*@
+@*<system.web>
+        <authorization>
+            <allow roles="admin" />
+            <deny users="?" />
+        </authorization>
+    </system.web>*@

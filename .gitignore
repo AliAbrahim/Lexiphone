@@ -48,3 +48,5 @@ Temporary Items
 *.mdf
 *.ldf
 *.suo
+Lexiphone/App_Data/aspnet-Lexiphone-20170509085805.mdf
+Lexiphone/App_Data/aspnet-Lexiphone-20170509085805_log.ldf

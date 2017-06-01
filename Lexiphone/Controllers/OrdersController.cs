@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Lexiphone.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Lexiphone.Controllers
 {
@@ -16,27 +17,19 @@ namespace Lexiphone.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         //GET: Orders
+        public ActionResult History()
+        {
+            var currentUser = User.Identity.GetUserName();
+            var orders = db.Orders.Include(o => o.OrderRows).Where(n => n.Username == currentUser);
+            return View(orders.ToList());
+        }
+        [Authorize(Roles ="admin")]
         public ActionResult Index()
         {
+            
             return View(db.Orders.ToList());
         }
-        //public ActionResult Index(string sortorder)
-        //{
-        //    ViewBag.EmailSortParam= string.IsNullOrEmpty(sortorder)?"Email":" ";
-        //    ViewBag.DateSortParm= sortorder == "Email" ? "Email" : "Date";
-        //    var orders = from s in db.Orders
-        //                 select s;
-
-        //    switch (sortorder)
-        //    {
-        //        case "Email":
-        //            students = students.OrderByDescending(s => s.LastName);
-        //            break;
-
-
-        //            return View(db.Orders.ToList());
-        //}
-
+        
 
 
 
@@ -78,6 +71,7 @@ namespace Lexiphone.Controllers
         }
 
         // GET: Orders/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -93,6 +87,7 @@ namespace Lexiphone.Controllers
         }
 
         // POST: Orders/Edit/5
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Order order)
@@ -107,6 +102,7 @@ namespace Lexiphone.Controllers
         }
 
         // GET: Orders/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -122,6 +118,7 @@ namespace Lexiphone.Controllers
         }
 
         // POST: Orders/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -139,6 +136,11 @@ namespace Lexiphone.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        [Authorize(Roles = "admin")]
+        public ActionResult OrderList()
+        {
+            return View(db.Orders.ToList());
         }
     }
 }

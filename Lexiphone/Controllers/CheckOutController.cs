@@ -24,32 +24,27 @@ namespace Lexiphone.Controllers
             TryValidateModel(order);
             try
             {
-                //if(string.Equals(values["PromoCode"], PromoCode, StringComparison.OrdinalIgnoreCase) == false)
-                //{
-                //    return View(order);
-                //}
-                //else
-                //{
+               
                 order.Username = User.Identity.Name;
                 order.OrderDate = DateTime.Now;
-                //order.FirstName = myOrder.FirstName;
-                //order.LastName = myOrder.LastName;
-                //order.Phone = myOrder.Phone;
-                //order.PostalCode = myOrder.PostalCode;
-                //order.State = myOrder.State;
-                //order.Email = myOrder.Email;
-                //order.Address = myOrder.Address;
-                //order.City = myOrder.City;
-                //order.Country = myOrder.Country;
-
-                var cart = ShoppingCart.GetCart(this.HttpContext);
-                    cart.CreateOrder(order);
-                order.Total = cart.GetTotal();
+                order.FirstName = myOrder.FirstName;
+                order.LastName = myOrder.LastName;
+                order.Phone = myOrder.Phone;
+                order.PostalCode = myOrder.PostalCode;
+                order.State = myOrder.State;
+                order.Email = myOrder.Email;
+                order.Address = myOrder.Address;
+                order.City = myOrder.City;
+                order.Country = myOrder.Country;
                 db.Orders.Add(order);
-
                 db.SaveChanges();
 
-                return RedirectToAction("Complete", new { id = order.OrderId });
+                var cart = ShoppingCart.GetCart(this.HttpContext);
+                order.Total = cart.GetTotal();
+                cart.CreateOrder(order);
+                db.SaveChanges();
+
+                return RedirectToAction("Complete", new { id = order.OrderId, total=order.Total, time=order.OrderDate });
                 //}
             }
             catch
@@ -57,12 +52,14 @@ namespace Lexiphone.Controllers
                 return View(order);
             }
         }
-        public ActionResult Complete(int id)
+        public ActionResult Complete(int id ,decimal total, DateTime time)
         {
             bool isValid = db.Orders.Any(o => o.OrderId == id && o.Username == User.Identity.Name);
             if (isValid)
             {
                 ViewBag.id = id;
+                ViewBag.total = total;
+                ViewBag.time = time;
                 return View();
             }
             else

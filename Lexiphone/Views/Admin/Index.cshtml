@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="margin-top:100px">SITE MANEGMENT</h2>
+<table style="background-image:url(http://4.bp.blogspot.com/-i6LVqIyLLf8/VFejVRSY5ZI/AAAAAAAABGc/Ton5FGh2TGY/s1600/A-TEXTURA%2B-6.jpg)">
+    <tr>
+        <td>
+            <div class="col-lg-3" style="margin-top:150px; margin-bottom:150px">
+                <button class="btn btn-primary" style="background-color:black; width:150px">
+                    @Html.ActionLink("ROLE", "Index", "Role")
+                </button>
+            </div>
+        </td>
+        <td>
+            <div class="col-lg-3" style="margin-top:150px; margin-bottom:150px">
+                <button class="btn btn-primary" style="background-color:black; width:150px">
+                    @Html.ActionLink("ORDERS", "OrderList", "Orders")
+                </button>
+            </div>
+
+        </td>
+        <td>
+            <div class="col-lg-3" style="margin-top:150px; margin-bottom:150px">
+                <button class="btn btn-primary" style="background-color:black; width:150px">
+                    @Html.ActionLink("PRODUCTS", "ProductList", "Products")
+                </button>
+            </div>
+        </td>
+    </tr>
+    <tr></tr>
+    <tr></tr>
+</table>
